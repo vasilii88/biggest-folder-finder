@@ -5,18 +5,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String path = "C:\\Users\\Bot19\\Desktop";
+        String path = "C:\\Users\\Bot19\\Desktop\\работа Uran";
         File file = new File(path);
+        int limit = 50 * 1024 * 1024;
 
         long start = System.currentTimeMillis();
-
-
-            /*System.out.println(getFolderSize(file));*/
-        FolderSizeCalculator calculator = new FolderSizeCalculator(file);
+                    /*System.out.println(getFolderSize(file));*/
+        Node root = new Node(file, limit);
+        FolderSizeCalculator calculator = new FolderSizeCalculator(root);
         ForkJoinPool pool = new ForkJoinPool();
-        long size = pool.invoke(calculator);
-        System.out.println(size);
-        System.out.println((System.currentTimeMillis() - start) + " мс");
+        pool.invoke(calculator);
+        System.out.println(root);
+        System.out.println("Време выполнения - " + (System.currentTimeMillis() - start) + " мс");
     }
 
     public static long getFolderSize(File folder) {
