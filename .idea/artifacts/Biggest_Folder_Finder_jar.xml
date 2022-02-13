@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Biggest-Folder-Finder:jar">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="Biggest-Folder-Finder.jar">
+      <element id="module-output" name="Biggest-Folder-Finder" />
+    </root>
+  </artifact>
+</component>
