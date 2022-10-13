@@ -1,7 +1,6 @@
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 public class ParametersBag {
 
@@ -30,7 +29,7 @@ public class ParametersBag {
             throw new IllegalArgumentException("Ошибка_3_Не правильно задан путь");
         }
 
-       if(!limit.matches("\\d+(b)?(Kb)?(Mb)?(T)?")){ // проверка на введение отрицательного значения в том числе
+       if(!limit.matches("\\d+(b)?(Kb)?(Mb)?(T)?")){
            throw new IllegalArgumentException("Не правильный формат лимита, Правильный формат [число][b,Mb,G,T]");
        }
     }

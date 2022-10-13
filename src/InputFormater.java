@@ -17,7 +17,7 @@ public class InputFormater {
             return decimalFormat.format(size / 1048576.00) + " Mб";
         }
         if (size >= 1024 * 1024 * 1024) {
-            return decimalFormat.format(size / 1073741824.00) + " Г";
+            return decimalFormat.format(size / 1073741824.00) + " Гб";
         }
 
         return String.valueOf(size);

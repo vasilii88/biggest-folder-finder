@@ -21,7 +21,7 @@ public class Node {
 
     public void addChild (Node node) {
         node.setlevel(levelNode + 1);
-        node.setLimit(getLimit()); // берем лимит от родителя
+        node.setLimit(getLimit());
         children.add(node);
     }
 
@@ -60,7 +60,7 @@ public class Node {
             if (child.getSize()  < limit) {
                 continue;
             }
-            builder.append("\t".repeat(getLevelNode() + 1) + child.toString());
+            builder.append("\t".repeat(getLevelNode() + 1) + child);
         }
         return builder.toString();
     }

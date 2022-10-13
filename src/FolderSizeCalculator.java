@@ -7,7 +7,6 @@ public class FolderSizeCalculator extends RecursiveTask<Long> {
 
    private Node node;
 
-
    public FolderSizeCalculator(Node node) {
        this.node = node;
    }

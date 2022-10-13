@@ -1,26 +1,44 @@
 import java.io.File;
+import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        //String[] arg = {"-d", "C:\\Users\\Bot19\\Desktop\\работа Uran", "-l", "50Mb"};
+        /* Пример для ввода
+        String[] arg = {"-d", "C:\\Users\\Bot19\\Desktop, "-l", "10Mb"};*/
 
-        ParametersBag bag = new ParametersBag(args);
-        String path = bag.getPath(); //"C:\\Users\\Bot19\\Desktop\\работа Uran", C:\DIP
-        File file = new File(path);
-        long limit = bag.getLimit(); //50 * 1024 * 1024;
+        Scanner scanner = new Scanner(System.in);
 
-        long start = System.currentTimeMillis();
+        for (; ; ) {
+            try {
+                System.out.println("Введите команду в формате: -d <Путь до файла> -l <Размер файла>, или 0 для того чтобы завершить программу:");
+                String input = scanner.nextLine();
 
-        Node root = new Node(file);
-        root.setLimit(limit); //передаем лимит в корень
-        FolderSizeCalculator calculator = new FolderSizeCalculator(root);
-        ForkJoinPool pool = new ForkJoinPool();
-        pool.invoke(calculator);
-        System.out.println(root);
-        System.out.println("Время выполнения - " + (System.currentTimeMillis() - start) + " мс");
+                if (input.equals("0")) {
+                    break;
+                }
+
+                String[] arg = input.split(" ");
+
+                ParametersBag bag = new ParametersBag(arg);
+                String path = bag.getPath();
+                File file = new File(path);
+                long limit = bag.getLimit();
+
+                long start = System.currentTimeMillis();
+
+                Node root = new Node(file);
+                root.setLimit(limit);
+                FolderSizeCalculator calculator = new FolderSizeCalculator(root);
+                ForkJoinPool pool = new ForkJoinPool();
+                pool.invoke(calculator);
+                System.out.println(root);
+                System.out.println("Время выполнения - " + (System.currentTimeMillis() - start) + " мс");
+            } catch (IllegalArgumentException exception) {
+                exception.printStackTrace();
+            }
+        }
     }
-
 }
